@@ -11,6 +11,10 @@ public class Shot : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            if (player == collision.GetComponent<Player>())
+            {
+                return;
+            }
             if (!collision.gameObject.GetComponent<Player>().damaged)
             {
                 Destroy(this.gameObject, 0);
