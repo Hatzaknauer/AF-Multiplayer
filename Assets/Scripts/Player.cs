@@ -46,7 +46,6 @@ public class Player : MonoBehaviour, IPunObservable
 
     private void Awake()
     {
-        FindObjectOfType<AudioManager>().Play("Shutup");
     }
 
     private void Start()
@@ -81,7 +80,6 @@ public class Player : MonoBehaviour, IPunObservable
         {
             if(Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
             {
-                FindObjectOfType<AudioManager>().Stop("TankIdle");
                 if(!isMoving && isPlaying)
                 {
                     isPlaying = false;
@@ -92,7 +90,6 @@ public class Player : MonoBehaviour, IPunObservable
             {
                 isMoving = false;
                 isPlaying = false;
-                FindObjectOfType<AudioManager>().Stop("TankMoving");
             }
 
             hor = Input.GetAxis("Horizontal");
@@ -137,17 +134,7 @@ public class Player : MonoBehaviour, IPunObservable
         rb.velocity = new Vector2(dir.x, rb.velocity.y);
 
         float angle = transform.rotation.eulerAngles.y;
-        rb.MoveRotation(Quaternion.Euler(0, angle + (hor * torque), 0));
-        if (isMoving && !isPlaying)
-        {
-            isPlaying = true;
-            FindObjectOfType<AudioManager>().Play("TankMoving" + (int)numPlayer);
-        }
-        else if (!isMoving && !isPlaying)
-        {
-            isPlaying = true;
-            FindObjectOfType<AudioManager>().Play("TankIdle" + (int)numPlayer);
-        }
+        rb.MoveRotation(Quaternion.Euler(angle + (hor * torque), 0, 0));
 
     }
 
@@ -156,8 +143,7 @@ public class Player : MonoBehaviour, IPunObservable
     {
             var instance = Instantiate(Shot, ponta.transform.position, ponta.transform.rotation);
             instance.GetComponent<Shot>().player = this;
-            instance.GetComponent<Rigidbody>().AddForce(ponta.transform.forward * 6000);
-            FindObjectOfType<AudioManager>().Play("TankFire" + (int)numPlayer);
+            instance.GetComponent<Rigidbody2D>().AddForce(ponta.transform.forward * 6000);
     }
 
     public void AddPoints(int value)
