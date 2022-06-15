@@ -22,27 +22,23 @@ public class Player : MonoBehaviour, IPunObservable
     public PlayerData_SO data;
     public EnumPlayer numPlayer;
     public PhotonView view;
-        public Canvas myCanvas;
+    public Canvas myCanvas;
 
     public float force = 10;
     public float torque = 10;
 
     public float myHealth = 10;
 
-    Rigidbody rb;
+    Rigidbody2D rb;
 
     float hor;
     float ver;
 
-    Vector3 startPos;
+    Vector2 startPos;
     Quaternion startRotation;
 
-    public GameObject fumaca, fumacaOld;
     public GameObject Shot;
     public GameObject ponta;
-
-        public GameObject myCam,
-            mainCam;
 
     public bool damaged,
         isMoving,
@@ -56,7 +52,7 @@ public class Player : MonoBehaviour, IPunObservable
     private void Start()
     {
         networkController = FindObjectOfType<NetworkController>();
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
         startPos = transform.position;
         startRotation = transform.rotation;
         view = GetComponent<PhotonView>();
@@ -72,15 +68,12 @@ public class Player : MonoBehaviour, IPunObservable
             if (view.IsMine)
             {
                 GameManager.GM.thisPlayerPoints = data.score;
-                myCam.SetActive(true);
-                GameManager.GM.cameraInScene = myCam.GetComponent<Camera>();
                 Destroy(Camera.main);
                 myCanvas.gameObject.SetActive(false);
             }
             else
             {
                 myCanvas.transform.LookAt(GameManager.GM.cameraInScene.transform.position);
-                myCam.SetActive(false);
                 return;
             }
 
@@ -123,11 +116,8 @@ public class Player : MonoBehaviour, IPunObservable
     {
         myHealth = 10;
         damaged = false;
-        Destroy(fumacaOld);
         transform.rotation = startRotation;
         transform.position = networkController.GetRandomSpawnPoint().transform.position;
-        FindObjectOfType<AudioManager>().Stop("Fire" + (int)numPlayer);
-        FindObjectOfType<AudioManager>().Play("Shutup");
     }
 
     public void Morri(Player player)
@@ -135,21 +125,16 @@ public class Player : MonoBehaviour, IPunObservable
         if (this.enabled == true)
         {
             //Instancia fumaça no modelo e não no centro do objeto que nao entendi onde está
-            fumacaOld = Instantiate(fumaca, this.gameObject.GetComponentInChildren<LODGroup>().transform);
                 player.AddPoints(1);
-            damaged = true;
+                damaged = true;
                 StartCoroutine("MorreuCountdown");
-            FindObjectOfType<AudioManager>().Stop("TankIdle" + (int)numPlayer);
-            FindObjectOfType<AudioManager>().Stop("TankMoving" + (int)numPlayer);
-            FindObjectOfType<AudioManager>().Play("Fire" + (int)numPlayer);
-            FindObjectOfType<AudioManager>().Play("Shutdown");
-            }
+        }
     }
 
     void Movement()
     {
-        Vector3 dir = transform.forward * ver * force;
-        rb.velocity = new Vector3(dir.x, rb.velocity.y, dir.z);
+        Vector2 dir = transform.forward * ver * force;
+        rb.velocity = new Vector2(dir.x, rb.velocity.y);
 
         float angle = transform.rotation.eulerAngles.y;
         rb.MoveRotation(Quaternion.Euler(0, angle + (hor * torque), 0));
