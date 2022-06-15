@@ -74,7 +74,7 @@ public class Player : MonoBehaviour, IPunObservable
             {
                 return;
             }
-
+            myCanvas.transform.position = this.gameObject.transform.position;
             if (!damaged)
         {
             if(Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
