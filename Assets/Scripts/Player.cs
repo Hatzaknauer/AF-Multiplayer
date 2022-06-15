@@ -66,9 +66,8 @@ public class Player : MonoBehaviour, IPunObservable
             if (!view.IsMine)
             {
                 return;
-
             }
-
+            Debug.Log(this.gameObject.name);
             if (!damaged)
         {
             if(Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
