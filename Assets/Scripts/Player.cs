@@ -63,14 +63,10 @@ public class Player : MonoBehaviour, IPunObservable
 
     private void Update()
     {
-            if (view.IsMine)
+            if (!view.IsMine)
             {
-                Destroy(Camera.main);
-            }
-            else
-            {
-                myCanvas.transform.LookAt(GameManager.GM.cameraInScene.transform.position);
                 return;
+
             }
 
             if (!damaged)
