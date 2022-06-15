@@ -216,6 +216,7 @@ MonoBehaviour:
   numPlayer: 1
   view: {fileID: 8123248144473667036}
   myCanvas: {fileID: 0}
+  textNick: {fileID: 8123248145151484015}
   force: 10
   torque: 10
   myHealth: 10
