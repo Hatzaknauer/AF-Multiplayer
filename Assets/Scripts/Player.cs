@@ -70,11 +70,11 @@ public class Player : MonoBehaviour, IPunObservable
 
     private void Update()
     {
+            myCanvas.transform.position = this.gameObject.transform.position;
             if (!view.IsMine)
             {
                 return;
             }
-            myCanvas.transform.position = this.gameObject.transform.position;
             if (!damaged)
         {
             if(Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
