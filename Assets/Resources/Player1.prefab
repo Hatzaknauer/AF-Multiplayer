@@ -347,8 +347,8 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 82740cc215d2f6f47a8ff08b668946e2, type: 2}
   numPlayer: 2
   view: {fileID: 1377818505388048729}
-  myCanvas: {fileID: 0}
-  textNick: {fileID: 0}
+  myCanvas: {fileID: 2626115528975486844}
+  textNick: {fileID: 5181415473296475318}
   force: 10
   torque: 10
   myHealth: 10

@@ -584,8 +584,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: 818591a51f7c96d4b923dac55aa81796, type: 2}
-  player1: {fileID: 8123248144473667032, guid: 3e870caac363eb147ba4013f1bd0f045, type: 3}
-  player2: {fileID: 1441187170207833883, guid: 396ce0b3007653c4fb233dba301d3a49, type: 3}
+  player1: {fileID: 8344437858860601335, guid: 616de2c2767694442b04c1b90409cd3e, type: 3}
+  player2: {fileID: 8344437858860601335, guid: 64c7b31d7c0dc2847afaa6db9ba35fca, type: 3}
   player3: {fileID: 0}
   player4: {fileID: 0}
   spawnPoints:
