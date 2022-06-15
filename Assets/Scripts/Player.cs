@@ -50,6 +50,7 @@ public class Player : MonoBehaviour, IPunObservable
 
     private void Start()
     {
+            damaged = false;
         networkController = FindObjectOfType<NetworkController>();
         rb = GetComponent<Rigidbody2D>();
         startPos = transform.position;
@@ -67,7 +68,7 @@ public class Player : MonoBehaviour, IPunObservable
             {
                 return;
             }
-            Debug.Log(this.gameObject.name);
+
             if (!damaged)
         {
             if(Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
@@ -122,11 +123,11 @@ public class Player : MonoBehaviour, IPunObservable
 
     void Movement()
     {
-        Vector2 dir = transform.forward * ver * force;
-        rb.velocity = new Vector2(dir.x, rb.velocity.y);
+        Vector2 dir = -transform.right * ver * force;
+        rb.velocity = new Vector2(dir.x, dir.y);
 
-        float angle = transform.rotation.eulerAngles.y;
-        rb.MoveRotation(Quaternion.Euler(angle + (hor * torque), 0, 0));
+        float angle = transform.rotation.eulerAngles.z;
+        rb.MoveRotation(Quaternion.Euler(0, 0, angle + (hor * torque)));
 
     }
 
