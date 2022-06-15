@@ -136,7 +136,7 @@ public class Player : MonoBehaviour, IPunObservable
     {
             var instance = Instantiate(Shot, ponta.transform.position, ponta.transform.rotation);
             instance.GetComponent<Shot>().player = this;
-            instance.GetComponent<Rigidbody2D>().AddForce(ponta.transform.forward * 6000);
+            instance.GetComponent<Rigidbody2D>().AddForce(-ponta.transform.right * 600);
     }
 
     public void AddPoints(int value)
