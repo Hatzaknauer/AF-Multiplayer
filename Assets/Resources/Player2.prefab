@@ -215,8 +215,8 @@ MonoBehaviour:
   view: {fileID: 1377818505388048729}
   myCanvas: {fileID: 6775456863775955915}
   textNick: {fileID: 8343483796864590021}
-  force: 10
-  torque: 10
+  force: 50
+  torque: 8
   myHealth: 10
   Shot: {fileID: 2845814871379426769, guid: 2fa40a7e368198d4bbd4d4fa34c7b8be, type: 3}
   ponta: {fileID: 1377818504569224940}
@@ -261,7 +261,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 7
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
