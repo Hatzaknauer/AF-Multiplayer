@@ -7,7 +7,7 @@ public class Shot : MonoBehaviour
 {
     public Player player;
 
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
