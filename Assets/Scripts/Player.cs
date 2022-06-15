@@ -4,6 +4,8 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 
 namespace PlayerUnity
 {
@@ -23,8 +25,9 @@ public class Player : MonoBehaviour, IPunObservable
     public EnumPlayer numPlayer;
     public PhotonView view;
     public Canvas myCanvas;
+        public TMP_Text textNick;
 
-    public float force = 10;
+        public float force = 10;
     public float torque = 10;
 
     public float myHealth = 10;
@@ -50,15 +53,18 @@ public class Player : MonoBehaviour, IPunObservable
 
     private void Start()
     {
+
             damaged = false;
         networkController = FindObjectOfType<NetworkController>();
         rb = GetComponent<Rigidbody2D>();
         startPos = transform.position;
         startRotation = transform.rotation;
         view = GetComponent<PhotonView>();
+            textNick.text = view.Owner.NickName;
+
             if (view.IsMine)
             {
-
+                CallSetHUD();
             }
     }
 
@@ -171,6 +177,18 @@ public class Player : MonoBehaviour, IPunObservable
         {
             yield return new WaitForSeconds(5f);
             Reset();
+
+        }
+        public void CallSetHUD()
+        {
+            view.RPC("SetHUD", RpcTarget.All);
+        }
+
+        [PunRPC]
+        public void SetHUD()
+        {
+            textNick.text = view.Owner.NickName;
         }
     }
+
 }

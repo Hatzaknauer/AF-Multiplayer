@@ -18,7 +18,7 @@ public class Shot : MonoBehaviour
             if (!collision.gameObject.GetComponent<Player>().damaged)
             {
                 Destroy(this.gameObject, 0);
-                collision.gameObject.GetComponent<Player>().SetHealth(2, player);
+                collision.gameObject.GetComponent<Player>().SetHealth(20, player);
 
                 //collision.gameObject.GetComponent<Player>().Morri();
             }
