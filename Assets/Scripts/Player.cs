@@ -70,11 +70,11 @@ public class Player : MonoBehaviour, IPunObservable
 
     private void Update()
     {
+            myCanvas.transform.position = this.gameObject.transform.position;
             if (!view.IsMine)
             {
                 return;
             }
-
             if (!damaged)
         {
             if(Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
@@ -130,7 +130,8 @@ public class Player : MonoBehaviour, IPunObservable
     void Movement()
     {
         Vector2 dir = -transform.right * ver * force;
-        rb.velocity = new Vector2(dir.x, dir.y);
+        //rb.velocity = new Vector2(dir.x, dir.y);
+        rb.AddForce(dir);
 
         float angle = transform.rotation.eulerAngles.z;
         rb.MoveRotation(Quaternion.Euler(0, 0, angle + (-hor * torque)));
