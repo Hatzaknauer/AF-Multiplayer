@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
-        FindObjectOfType<AudioManager>().Play("Ambience");
         gameData.OnUpdateHUD.AddListener(UpdateHUD);
         gameData.OnPlayerEnter.AddListener(Revisa);
     }

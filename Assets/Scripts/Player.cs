@@ -57,8 +57,7 @@ public class Player : MonoBehaviour, IPunObservable
         view = GetComponent<PhotonView>();
             if (view.IsMine)
             {
-                GameManager.GM.thisPlayer = this;
-                GameManager.GM.UpdateHUD();
+
             }
     }
 
@@ -66,9 +65,7 @@ public class Player : MonoBehaviour, IPunObservable
     {
             if (view.IsMine)
             {
-                GameManager.GM.thisPlayerPoints = data.score;
                 Destroy(Camera.main);
-                myCanvas.gameObject.SetActive(false);
             }
             else
             {
